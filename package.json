@@ -1,11 +1,11 @@
 {
   "name": "webhook-build",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "serve": "nodemon --watch src/** node src/index.js"
+    "serve": "nodemon --watch src/** node src/test.js"
   },
   "author": "",
   "license": "ISC",

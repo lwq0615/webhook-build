@@ -1,6 +1,5 @@
 
 import process from "child_process"
-import e from "express";
 
 
 const Shell = function (cmds, options = {}) {
