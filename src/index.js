@@ -91,7 +91,7 @@ const register = (config) => {
   })
   webhookConfig = Object.assign(webhookConfig, config)
   app.listen(webhookConfig.port, () => {
-    console.log(`Server running at http://localhost:${webhookConfig.port}`);
+    console.log(`Server running at port: ${webhookConfig.port}`);
   });
 }
 
