@@ -2,6 +2,8 @@
 
 <center><h2>项目自动化部署工具</h2></center>
 
+> 在使用之前请先确保 webProjects[projectName].url 中配置的git仓库地址已经配置了公钥并且可以正确拉取代码！！！
+
 ## 如何使用
 
 ```sh
