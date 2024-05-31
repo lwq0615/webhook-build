@@ -54,7 +54,7 @@ app.get('/:projectName', (req, res) => {
     const spinner = ora('pull and building...\n')
     try {
       spinner.start()
-      // Shell([`cd ${projectDir}`, `git pull origin ${projectConfig.branch}`, ...projectConfig.buildCmds])
+      Shell([`cd ${projectDir}`, `git pull origin ${projectConfig.branch}`, ...projectConfig.buildCmds])
       spinner.succeed('pull and build success\n')
       res.send('project pull and build success')
     } catch (err) {
@@ -66,7 +66,7 @@ app.get('/:projectName', (req, res) => {
     const spinner = ora('clone and building...\n')
     try {
       spinner.start()
-      // Shell([`cd ${webhookConfig.webHome}`, `git clone ${projectConfig.url}`, `cd ${projectName}`, ...projectConfig.buildCmds])
+      Shell([`cd ${webhookConfig.webHome}`, `git clone ${projectConfig.url}`, `cd ${projectName}`, ...projectConfig.buildCmds])
       spinner.succeed('clone and build success\n')
       res.send('project clone and build success')
     } catch (err) {
