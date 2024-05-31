@@ -45,32 +45,32 @@ app.get('/:projectName', (req, res) => {
     return
   }
   if (!projectConfig) {
-    res.send('project not found')
+    res.send(`project ${projectName} not found`)
     return
   }
   const projectDir = path.resolve(webhookConfig.webHome, projectName)
   if (fs.existsSync(projectDir)) {
     // 项目已存在 pull
-    const spinner = ora('pull and building...\n')
+    const spinner = ora(`project ${projectName} pull and building...\n`)
     try {
       spinner.start()
       Shell([`cd ${projectDir}`, `git pull origin ${projectConfig.branch}`, ...projectConfig.buildCmds])
-      spinner.succeed('pull and build success\n')
-      res.send('project pull and build success')
+      spinner.succeed(`project ${projectName} pull and build success\n`)
+      res.send(`project ${projectName} pull and build success`)
     } catch (err) {
-      spinner.fail('pull and build error\n')
+      spinner.fail(`project ${projectName} pull and build error\n`)
       res.send(err)
     }
   } else {
     // 项目不存在 clone
-    const spinner = ora('clone and building...\n')
+    const spinner = ora(`project ${projectName} clone and building...\n`)
     try {
       spinner.start()
       Shell([`cd ${webhookConfig.webHome}`, `git clone ${projectConfig.url}`, `cd ${projectName}`, ...projectConfig.buildCmds])
-      spinner.succeed('clone and build success\n')
-      res.send('project clone and build success')
+      spinner.succeed(`project ${projectName} clone and build success\n`)
+      res.send(`project ${projectName} clone and build success`)
     } catch (err) {
-      spinner.fail('clone and build error\n')
+      spinner.fail(`project ${projectName} clone and build error\n`)
       res.send(err)
     }
   }
