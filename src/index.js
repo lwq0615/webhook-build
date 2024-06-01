@@ -37,15 +37,15 @@ app.get('/:projectName', (req, res) => {
   const access = req.query.access
   const projectName = req.params.projectName
   const projectConfig = webhookConfig.webProjects[projectName]
+  if (!projectConfig) {
+    res.send(`project ${projectName} not found`)
+    return
+  }
   if (
     (projectConfig.access && projectConfig.access !== access) ||
     (!projectConfig.access && webhookConfig.access && webhookConfig.access !== access)
   ) {
     res.send("access error")
-    return
-  }
-  if (!projectConfig) {
-    res.send(`project ${projectName} not found`)
     return
   }
   const projectDir = path.resolve(webhookConfig.webHome, projectName)
