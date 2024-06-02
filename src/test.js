@@ -5,7 +5,8 @@ register({
   webHome: './web',
   webProjects: {
     "damon-copy": {
-      url: 'https://gitee.com/li_wei_qiang/damon-copy.git'
+      url: 'https://gitee.com/li_wei_qiang/damon-copy.git',
+      buildCmds: 'test.bat'
     }
   }
 })

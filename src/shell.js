@@ -23,4 +23,6 @@ const Shell = function (cmds, options = {}) {
   }
 };
 
+export const Bat = process.execFileSync
+
 export default Shell
