@@ -33,7 +33,7 @@ let webhookConfig = {
   access: ''
 }
 
-app.get('/:projectName', (req, res) => {
+app.use('/:projectName', (req, res) => {
   const access = req.query.access
   const projectName = req.params.projectName
   const projectConfig = webhookConfig.webProjects[projectName]
