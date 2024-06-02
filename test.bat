@@ -19,4 +19,10 @@ if "%java-pid%" neq "" (
   echo kill process : port %java-port%, pid %java-pid% ,name %java_name%
 )
 
+cd ./web/se-backend
+
+call D:\environment\apache-maven-3.6.1\bin\mvn clean package -Dmaven.test.skip=true
+
+cd ruoyi-admin/target
+
 java -jar ruoyi-admin.jar

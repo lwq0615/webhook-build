@@ -2,7 +2,7 @@ import express from "express";
 import fs from 'fs'
 import path from 'path'
 import ora from 'ora'
-import Shell, { Bat } from "./shell.js";
+import Shell from "./shell.js";
 
 const app = express()
 
@@ -54,12 +54,7 @@ app.get('/:projectName', (req, res) => {
     const spinner = ora(`project ${projectName} pull and building...\n`)
     try {
       spinner.start()
-      Shell([`cd ${projectDir}`, `git pull origin ${projectConfig.branch}`])
-      if(typeof projectConfig.buildCmds === 'string') {
-        Bat(projectConfig.buildCmds, null, { encoding: 'utf-8', cwd: process.cwd() })
-      }else {
-        Shell([`cd ${projectDir}`, ...projectConfig.buildCmds])
-      }
+      Shell([`cd ${projectDir}`, `git pull origin ${projectConfig.branch}`, ...projectConfig.buildCmds])
       spinner.succeed(`project ${projectName} pull and build success\n`)
       res.send(`project ${projectName} pull and build success`)
     } catch (err) {
@@ -72,12 +67,7 @@ app.get('/:projectName', (req, res) => {
     const spinner = ora(`project ${projectName} clone and building...\n`)
     try {
       spinner.start()
-      Shell([`cd ${webhookConfig.webHome}`, `git clone ${projectConfig.url}`])
-      if(typeof projectConfig.buildCmds === 'string') {
-        Bat(projectConfig.buildCmds, null, { encoding: 'utf-8', cwd: process.cwd() })
-      }else {
-        Shell([`cd ${webhookConfig.webHome}`, `cd ${projectName}`, ...projectConfig.buildCmds])
-      }
+      Shell([`cd ${webhookConfig.webHome}`, `git clone ${projectConfig.url}`, `cd ${projectName}`, ...projectConfig.buildCmds])
       spinner.succeed(`project ${projectName} clone and build success\n`)
       res.send(`project ${projectName} clone and build success`)
     } catch (err) {
